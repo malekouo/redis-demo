@@ -102,7 +102,7 @@ public class RedisUtil {
      *
      * @param key   键
      * @param value 值
-     * @return true成功 false失败
+     * @return true成功 false失败;key存在的话 就覆盖，返回true
      */
     public static boolean set(String key, Object value) {
         try {
@@ -112,6 +112,11 @@ public class RedisUtil {
             e.printStackTrace();
             return false;
         }
+    }
+
+    //分布式锁
+    public static boolean setnx(String key, Object value,long time){
+        return redisTemplate.opsForValue().setIfAbsent(key,value,time,TimeUnit.SECONDS);
     }
 
     /**

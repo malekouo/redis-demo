@@ -16,6 +16,7 @@ public class SpringAopApplication {
         boolean a = RedisUtil.set("张三", "aa");
         log.info("a{}",a);
         boolean b = RedisUtil.set("李四","bb");
+        boolean c = RedisUtil.setnx("李四","bb",2);
         log.info("b{}",b);
     }
 
