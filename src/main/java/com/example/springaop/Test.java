@@ -1,9 +1,13 @@
 package com.example.springaop;
 
+import com.example.springaop.util.RedisUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Test {
+
 
     public static ConcurrentLinkedQueue<SpringGift> queue;
     public static SpringGift currGift;
@@ -14,19 +18,9 @@ public class Test {
         }
     }
     public static void main(String[] args) throws Exception {
-        queue = new ConcurrentLinkedQueue<SpringGift>();
-        for(int i =0;i<3;i++){
-            SpringGift gift = new SpringGift();
-            gift.setRole("role"+i);
-            gift.setGift(new AtomicInteger(50));
-            queue.add(gift);
-        }
-        myThread mythread = new myThread();
-        for(int i=0;i<1000;i++){
-            new Thread(mythread).start();
-        }
+        //在这里 demo  redis是失败的，因为项目没有启动的话，bean是没有加载的，所以  redisTemplate 是从spring容器中拿不，是一个Null
+        RedisUtil.set("张三","aa");
 
-        System.err.println("总共收到"+count.get());
     }
     private static SpringGift getGift(){
         //防止多条线程同时弹出队首
