@@ -5,19 +5,17 @@ import com.example.springaop.util.RedisUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 @Slf4j
 public class SpringAopApplication {
+    public static ApplicationContext applicationContext;
 
     public static void main(String[] args) {
-
-        SpringApplication.run(SpringAopApplication.class, args);
-        boolean a = RedisUtil.set("张三", "aa");
-        log.info("a{}",a);
-        boolean b = RedisUtil.set("李四","bb");
-        boolean c = RedisUtil.setnx("李四","bb",2);
-        log.info("b{}",b);
+        //启动类中返回  applicationContext，用于获取bean
+        SpringAopApplication.applicationContext = SpringApplication.run(SpringAopApplication.class, args);
     }
 
 }
