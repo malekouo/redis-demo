@@ -19,14 +19,10 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 public class RedisAspect {
 
-    //定义web请求日志切点
-    @Pointcut("execution(com.example.springaop.controller.UserController.*(..))")
+    //todo 这个切点是可以改成 注解一起使用的
+    //定义web请求日志切点 controller包下面的类的所有方法
+    @Pointcut("execution(* com.example.springaop.controller.*.*(..))")
     private void webLog() {
-    }
-
-    //定义jedis切点（相当于每个JedisUtil下方法都会算一个切点）
-    @Pointcut("execution(com.example.springaop.util.JedisUtil.*(..))")
-    private void jedisPoint() {
     }
 
     /**
@@ -39,21 +35,10 @@ public class RedisAspect {
         ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = requestAttributes.getRequest();
         //打印请求内容
-        log.info("请求内容:方式{}--url{}--method{}--payload{}", request.getMethod(), request.getRequestURI(), joinPoint.getSignature(), joinPoint.getArgs());
+        log.info("请求内容:方式{{}}--url{{}}--method{{}}--payload{{}}", request.getMethod(), request.getRequestURI(), joinPoint.getSignature(), joinPoint.getArgs());
     }
 
 
-    @After(value = "jedisPoint()")
-    public void after(JoinPoint joinPoint) {
-        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = requestAttributes.getRequest();
-        //获取类
-        Class<? extends JoinPoint> jedisUtil = joinPoint.getClass();
-        ClassLoader classLoader = jedisUtil.getClassLoader();
-        //todo 关闭jedis实例连接
-       /* //打印请求内容
-        log.info("请求内容:方式{}--url{}--method{}--payload{}", request.getMethod(), request.getRequestURI(), joinPoint.getSignature(), joinPoint.getArgs());*/
-    }
 
 
 }
