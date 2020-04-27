@@ -42,4 +42,14 @@ class SpringAopApplicationTests {
 
     }
 
+    //System.identityHashCode(Object) 返回对象地址
+    @Test
+    public  void testString(){
+        String  a = "a";
+        System.out.println("第一次内存地址："+System.identityHashCode(a));
+        a="a";
+        System.out.println("赋值以后内存地址："+System.identityHashCode(a));
+        a="d";
+    }
+
 }

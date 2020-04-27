@@ -40,7 +40,7 @@ public class JedisConfig {
      *spring容器中注入 jedis连接池
      */
     @Bean //xml中的 bean 标签, beanID 就是 方法名字 redisPoolFactory
-    public JedisPool redisPoolFactory(){
+    public JedisPool redisPoolFactory(){            
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMaxIdle(maxIdle);
         jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);

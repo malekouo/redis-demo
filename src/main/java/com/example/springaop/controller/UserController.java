@@ -21,4 +21,10 @@ public class UserController {
     public String getUserInfo(@PathVariable String userUid) {
         return JSONObject.toJSONString(userService.getUserInfo(userUid));
     }
+
+    @RequestMapping(value = "/getUserInfoByUserUid/{userUid}", method = RequestMethod.GET)
+    @ResponseBody
+    public String getUserInfoByUserUid(@PathVariable String userUid) {
+        return JSONObject.toJSONString(userService.getUserInfoByUserUid(userUid));
+    }
 }
