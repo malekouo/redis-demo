@@ -1,17 +1,21 @@
 package com.example.springaop.service;
 
+import com.example.springaop.aop.annotation.WebLog;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 /**
  * 模拟库存
  */
 @Slf4j
+@Service
 public class StockService {
     //定义库存总数为 100 （static修饰）
     public static int stockAmount = 1000;
 
     private static StockService stockService = new StockService();
 
+    @WebLog
     public void addStock() {
         stockAmount++;
         log.info("加库存成功,线程名称{}，库存数是{}", Thread.currentThread().getName(), stockAmount);

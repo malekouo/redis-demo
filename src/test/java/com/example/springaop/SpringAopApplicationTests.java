@@ -1,13 +1,18 @@
 package com.example.springaop;
 
+import com.example.springaop.aop.annotation.WebLog;
 import com.example.springaop.service.StockService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
 class SpringAopApplicationTests {
+
+    @Autowired
+    private StockService stockService;
 
     @Test
     void contextLoads() {
@@ -50,6 +55,12 @@ class SpringAopApplicationTests {
         a="a";
         System.out.println("赋值以后内存地址："+System.identityHashCode(a));
         a="d";
+    }
+
+    @Test
+    @WebLog
+    public  void testString2(){
+         stockService.addStock();
     }
 
 }
