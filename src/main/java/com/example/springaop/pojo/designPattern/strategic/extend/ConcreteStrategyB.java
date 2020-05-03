@@ -1,4 +1,4 @@
-package com.example.springaop.pojo.designPattern.strategic;
+package com.example.springaop.pojo.designPattern.strategic.extend;
 
 public class ConcreteStrategyB extends Strategy{
     @Override

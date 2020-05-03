@@ -1,4 +1,4 @@
-package com.example.springaop.pojo.designPattern.strategic;
+package com.example.springaop.pojo.designPattern.strategic.extend;
 
 /**
  * 抽象策略

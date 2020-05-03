@@ -1,6 +1,5 @@
 package com.example.springaop.service;
 
-import com.example.springaop.aop.annotation.WebLog;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,6 @@ public class StockService {
 
     private static StockService stockService = new StockService();
 
-    @WebLog
     public void addStock() {
         stockAmount++;
         log.info("加库存成功,线程名称{}，库存数是{}", Thread.currentThread().getName(), stockAmount);

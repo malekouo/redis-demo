@@ -1,4 +1,4 @@
-package com.example.springaop.pojo.designPattern.strategic;
+package com.example.springaop.pojo.designPattern.strategic.extend;
 
 /**
  * 策略模式：
@@ -12,7 +12,15 @@ package com.example.springaop.pojo.designPattern.strategic;
 public class CashContext {
     private Strategy strategy;
 
+    //构造函数注入
     public CashContext(Strategy strategy) {
+        this.strategy = strategy;
+    }
+
+    //上下文接口
+    public void contextInterface() {
         strategy.algorithmInterface();
     }
+
+
 }

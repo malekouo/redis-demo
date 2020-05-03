@@ -15,4 +15,5 @@ public class Adapter implements Target {
     public void request() {
         this.adaptee.specificRequest();
     }
+
 }
